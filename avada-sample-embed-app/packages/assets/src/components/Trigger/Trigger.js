@@ -1,7 +1,7 @@
 import {Select, Stack, TextField} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 
-export default function() {
+export default function Trigger() {
   //---------------------Text Input Setting------------------//
   const [value, setValue] = useState('');
 

@@ -5,14 +5,6 @@ import DesktopPositionInput from '../DesktopPositionInput/DesktopPositionInput';
 import RangeSliderWithtext from '../RangeSliderWithText/RangeSliderWithText';
 
 export default function Display({settingValue, handleSettingValue}) {
-  //-------------------Hide time checkbox setting-------------------//
-  const [hideTime, setHideTime] = useState(false);
-  const handleChangeTime = useCallback(newChecked => setHideTime(newChecked), []);
-
-  //-----------------Truncate content text setting--------------------//
-  const [truncateContent, setTruncateContent] = useState(false);
-  const handleChangeContent = useCallback(newChecked => setTruncateContent(newChecked), []);
-
   return (
     <FormLayout>
       <Card.Section title="APPEARANCE">
@@ -20,17 +12,25 @@ export default function Display({settingValue, handleSettingValue}) {
           <DesktopPositionInput
             label={'Desktop Position'}
             helpText="The display positon of the pop on your website"
-            value={settingValue}
+            value={settingValue.position}
             onChange={value => {
               handleSettingValue('position', value);
             }}
           />
           <Stack vertical spacing="baseTight">
-            <Checkbox label="Hide time ago" checked={hideTime} onChange={handleChangeTime} />
+            <Checkbox
+              label="Hide time ago"
+              checked={settingValue.hideTimeAgo}
+              onChange={value => {
+                handleSettingValue('hideTimeAgo', value);
+              }}
+            />
             <Checkbox
               label="Truncate content text"
-              checked={truncateContent}
-              onChange={handleChangeContent}
+              checked={settingValue.truncateProductName}
+              onChange={value => {
+                handleSettingValue('truncateProductName', value);
+              }}
               helpText="If your product name is long for one line, it will be truncated to 'Product na...'"
             />
           </Stack>
@@ -42,7 +42,7 @@ export default function Display({settingValue, handleSettingValue}) {
             <RangeSliderWithtext
               label={'Display duration'}
               min={0}
-              max={5}
+              max={10}
               helptext={'How long each pop will display in your page.'}
               suffix={'seconds(s)'}
               value={2} // sau lấy dữ liệu từ bên setting

@@ -22,7 +22,8 @@ export default function Notifications() {
     country: 'United States',
     productName: 'Puffer Jacket With Hidden Hood',
     timestamp: `${new Date()}`,
-    productImage: 'https://s.net.vn/dBQu',
+    productImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rzj2EAe2nS5OvZKYW3_MuXJMH8zdGp7dCw&usqp=CAU',
     settings: {hideTimeAgo: false, truncateProductName: false}
   };
   const product2 = {
@@ -32,7 +33,8 @@ export default function Notifications() {
     country: 'United States',
     productName: 'Puffer Jacket With Hidden Hood',
     timestamp: `${new Date()}`,
-    productImage: 'https://s.net.vn/dBQu',
+    productImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rzj2EAe2nS5OvZKYW3_MuXJMH8zdGp7dCw&usqp=CAU',
     settings: {hideTimeAgo: false, truncateProductName: false}
   };
   const product3 = {
@@ -42,7 +44,8 @@ export default function Notifications() {
     country: 'United States',
     productName: 'Puffer Jacket With Hidden Hood',
     timestamp: `${new Date()}`,
-    productImage: 'https://s.net.vn/dBQu',
+    productImage:
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rzj2EAe2nS5OvZKYW3_MuXJMH8zdGp7dCw&usqp=CAU',
     settings: {hideTimeAgo: false, truncateProductName: false}
   };
   const [products, setProducts] = useState([product1, product2, product3]);

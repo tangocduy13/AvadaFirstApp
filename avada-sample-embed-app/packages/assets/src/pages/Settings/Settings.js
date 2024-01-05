@@ -4,16 +4,15 @@ import {Layout, Page, Card, Tabs} from '@shopify/polaris';
 import NotificationPopup from '../../components/NotificationPopup/NotificationPopup';
 import Display from '../../components/Display/Display';
 import Trigger from '../../components/Trigger/Trigger';
+import useFetchApi from '../../hooks/api/useFetchApi';
+import defaultSettings from '../../const/defaultSettings';
 
 export default function Settings() {
-  //-----------------------------Position Setting--------------------------//
-  const [data, setData] = useState({position: 'bottom-left'});
-  const handleChangeInput = (key, value) => {
-    setData(prev => ({
-      ...prev,
-      [key]: value
-    }));
-  };
+  const {data: settingValue, loading, handleChangeInput: handleSettingValue} = useFetchApi({
+    url: '/settings',
+    defaultData: defaultSettings
+  });
+
   //------------------------------Tabs Setting---------------------------//
   const [selected, setSelected] = useState(0);
 
@@ -22,7 +21,7 @@ export default function Settings() {
     {
       id: 'display',
       content: 'Display',
-      contentBody: <Display settingValue={data.position} handleSettingValue={handleChangeInput} />
+      contentBody: <Display settingValue={settingValue} handleSettingValue={handleSettingValue} />
     },
     {
       id: 'trigger',
@@ -46,7 +45,7 @@ export default function Settings() {
     >
       <Layout>
         <Layout.Section oneThird>
-          <NotificationPopup />
+          <NotificationPopup settings={settingValue} />
         </Layout.Section>
         <Layout.Section>
           <Card>

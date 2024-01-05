@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Layout, Page, SettingToggle, TextStyle} from '@shopify/polaris';
 import {useStore} from '@assets/reducers/storeReducer';
+import {useFetchApi} from '../../hooks/api/useFetchApi';
 
 /**
  * Render a home page for overview
