@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {Layout, Page, SettingToggle, TextStyle} from '@shopify/polaris';
-import {useStore} from '@assets/reducers/storeReducer';
-import {useFetchApi} from '../../hooks/api/useFetchApi';
 
 /**
  * Render a home page for overview
@@ -11,7 +9,6 @@ import {useFetchApi} from '../../hooks/api/useFetchApi';
  */
 export default function Home() {
   const [enabled, setEnabled] = useState(false);
-  const {dispatch} = useStore();
 
   return (
     <Page title="Home" fullWidth>
