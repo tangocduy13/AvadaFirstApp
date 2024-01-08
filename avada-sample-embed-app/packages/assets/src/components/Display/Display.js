@@ -6,7 +6,7 @@ import RangeSliderWithText from '../RangeSliderWithText/RangeSliderWithText';
 
 export default function Display({settingValue, handleSettingValue}) {
   return (
-    <FormLayout>
+    <>
       <Card.Section title="APPEARANCE">
         <FormLayout>
           <DesktopPositionInput
@@ -88,6 +88,6 @@ export default function Display({settingValue, handleSettingValue}) {
           </FormLayout.Group>
         </FormLayout>
       </Card.Section>
-    </FormLayout>
+    </>
   );
 }

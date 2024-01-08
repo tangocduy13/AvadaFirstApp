@@ -1,4 +1,4 @@
-import {Select, Stack, TextField} from '@shopify/polaris';
+import {Card, FormLayout, Select, Stack, TextField} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 
 export default function Trigger({settingValue, handleSettingValue}) {
@@ -27,7 +27,7 @@ export default function Trigger({settingValue, handleSettingValue}) {
       label: 'Specific pages',
       value: 'Specific pages',
       contentBody: (
-        <>
+        <Stack vertical>
           <TextField
             label="Included pages"
             value={settingValue.includedUrls}
@@ -48,7 +48,7 @@ export default function Trigger({settingValue, handleSettingValue}) {
             autoComplete="off"
             helpText="Page URLs NOT to show the pop-up (separated by new lines)"
           />
-        </>
+        </Stack>
       )
     }
   ];
@@ -59,9 +59,9 @@ export default function Trigger({settingValue, handleSettingValue}) {
   };
 
   return (
-    <Stack vertical>
+    <FormLayout>
       <Select options={options} onChange={handleSelectChange} value={selected} />
       {getContentBody()}
-    </Stack>
+    </FormLayout>
   );
 }

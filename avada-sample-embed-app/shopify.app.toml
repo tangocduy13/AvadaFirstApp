@@ -2,7 +2,7 @@
 
 name = "Avada First app"
 client_id = "c0e5502ad7b45c37c6673a398b31f280"
-application_url = "https://forest-mlb-deeply-concepts.trycloudflare.com/auth/shopify"
+application_url = "https://intelligence-wholesale-infected-f.trycloudflare.com/auth/shopify"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ use_legacy_install_flow = true
 
 [auth]
 redirect_urls = [
-  "https://forest-mlb-deeply-concepts.trycloudflare.com/auth/shopify/callback",
-  "https://forest-mlb-deeply-concepts.trycloudflare.com/authSa/shopify/callback",
-  "https://forest-mlb-deeply-concepts.trycloudflare.com/auth/shopify/embed/callback",
+  "https://intelligence-wholesale-infected-f.trycloudflare.com/auth/shopify/callback",
+  "https://intelligence-wholesale-infected-f.trycloudflare.com/authSa/shopify/callback",
+  "https://intelligence-wholesale-infected-f.trycloudflare.com/auth/shopify/embed/callback",
   "https://localhost:3000/auth/shopify/callback",
   "https://localhost:3000/authSa/shopify/callback",
   "https://localhost:3000/auth/shopify/embed/callback"
