@@ -1,15 +1,19 @@
 import {Firestore} from '@google-cloud/firestore';
+import prepareDocs from '../helpers/prepareDocs';
 
 const firestore = new Firestore();
 const collection = firestore.collection('Notifications');
 
-export async function() {
-  const docs = await collection.doc().get();
-  if(!docs.exists) {
+export async function getNotifications() {
+  try {
+    const snapshot = await collection.get();
+    if (snapshot.empty) {
+      return null;
+    } else {
+      return prepareDocs(snapshot.docs);
+    }
+  } catch (e) {
+    console.error(e);
     return null;
-  } else {
-    docs.forEach(doc => {
-
-    })
   }
 }

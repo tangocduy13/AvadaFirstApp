@@ -1,19 +1,23 @@
 import React, {useCallback, useState} from 'react';
 import './Settings.scss';
-import {Layout, Page, Card, Tabs} from '@shopify/polaris';
+import {Layout, Page, Card, Tabs, Frame, Loading} from '@shopify/polaris';
 import NotificationPopup from '../../components/NotificationPopup/NotificationPopup';
 import Display from '../../components/Display/Display';
 import Trigger from '../../components/Trigger/Trigger';
 import useFetchApi from '../../hooks/api/useFetchApi';
 import defaultSettings from '../../const/defaultSettings';
+import useEditApi from '@assets/hooks/api/useEditApi';
 
 export default function Settings() {
   const {data: settingValue, loading, handleChangeInput: handleSettingValue} = useFetchApi({
     url: '/settings',
     defaultData: defaultSettings
   });
+  const {editing, handleEdit} = useEditApi({
+    url: '/settings'
+  });
 
-  //------------------------------Tabs Setting---------------------------//
+  // ------------------------------Tabs Setting---------------------------//
   const [selected, setSelected] = useState(0);
 
   const handleTabChange = useCallback(selectedTabIndex => setSelected(selectedTabIndex), []);
@@ -26,11 +30,20 @@ export default function Settings() {
     {
       id: 'trigger',
       content: 'Trigger',
-      contentBody: <Trigger />
+      contentBody: <Trigger settingValue={settingValue} handleSettingValue={handleSettingValue} />
     }
   ];
 
-  //-----------------------------End Tabs Setting-------------------------//
+  // -----------------------------End Tabs Setting-------------------------//
+  if (loading) {
+    return (
+      <div style={{height: '100px'}}>
+        <Frame>
+          <Loading />
+        </Frame>
+      </div>
+    );
+  }
   return (
     <Page
       title="Settings"
@@ -39,8 +52,9 @@ export default function Settings() {
       primaryAction={{
         content: 'Save',
         onAction: () => {
-          alert('Saved');
-        }
+          handleEdit(settingValue);
+        },
+        loading: editing
       }}
     >
       <Layout>

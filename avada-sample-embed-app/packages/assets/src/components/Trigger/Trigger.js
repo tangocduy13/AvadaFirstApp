@@ -1,13 +1,7 @@
 import {Select, Stack, TextField} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 
-export default function Trigger() {
-  //---------------------Text Input Setting------------------//
-  const [value, setValue] = useState('');
-
-  const handleChange = useCallback(newValue => setValue(newValue), []);
-
-  //---------------------Select Setting---------------------//
+export default function Trigger({settingValue, handleSettingValue}) {
   const [selected, setSelected] = useState('All pages');
 
   const handleSelectChange = useCallback(value => setSelected(value), []);
@@ -19,8 +13,10 @@ export default function Trigger() {
       contentBody: (
         <TextField
           label="Excluded pages"
-          value={value}
-          onChange={handleChange}
+          value={settingValue.excludedUrls}
+          onChange={value => {
+            handleSettingValue('excludedUrls', value);
+          }}
           multiline={4}
           autoComplete="off"
           helpText="Page URLs NOT to show the pop-up (separated by new lines)"
@@ -34,16 +30,20 @@ export default function Trigger() {
         <>
           <TextField
             label="Included pages"
-            value={value}
-            onChange={handleChange}
+            value={settingValue.includedUrls}
+            onChange={value => {
+              handleSettingValue('includedUrls', value);
+            }}
             multiline={4}
             autoComplete="off"
             helpText="Page URLs to show the pop-up (separated by new lines)"
           />
           <TextField
             label="Excluded pages"
-            value={value}
-            onChange={handleChange}
+            value={settingValue.excludedUrls}
+            onChange={value => {
+              handleSettingValue('excludedUrls', value);
+            }}
             multiline={4}
             autoComplete="off"
             helpText="Page URLs NOT to show the pop-up (separated by new lines)"

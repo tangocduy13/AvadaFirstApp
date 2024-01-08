@@ -1,8 +1,8 @@
-import React, {useState, useCallback} from 'react';
+import React from 'react';
 import './Display.scss';
 import {Card, Checkbox, FormLayout, Stack} from '@shopify/polaris';
 import DesktopPositionInput from '../DesktopPositionInput/DesktopPositionInput';
-import RangeSliderWithtext from '../RangeSliderWithText/RangeSliderWithText';
+import RangeSliderWithText from '../RangeSliderWithText/RangeSliderWithText';
 
 export default function Display({settingValue, handleSettingValue}) {
   return (
@@ -39,39 +39,51 @@ export default function Display({settingValue, handleSettingValue}) {
       <Card.Section title="TIMING">
         <FormLayout>
           <FormLayout.Group>
-            <RangeSliderWithtext
+            <RangeSliderWithText
               label={'Display duration'}
               min={0}
               max={10}
               helptext={'How long each pop will display in your page.'}
               suffix={'seconds(s)'}
-              value={2} // sau lấy dữ liệu từ bên setting
+              value={settingValue.displayDuration}
+              onChange={value => {
+                handleSettingValue('displayDuration', value);
+              }}
             />
-            <RangeSliderWithtext
+            <RangeSliderWithText
               label={'Time before first popup'}
               min={0}
               max={10}
               helptext={'The delay time before the first notification.'}
               suffix={'seconds(s)'}
-              value={10} // sau lấy dữ liệu từ bên setting
+              value={settingValue.firstDelay}
+              onChange={value => {
+                handleSettingValue('firstDelay', value);
+              }}
             />
           </FormLayout.Group>
           <FormLayout.Group>
-            <RangeSliderWithtext
+            <RangeSliderWithText
               label={'Gap time between two pops'}
               min={0}
               max={10}
               helptext={'The time interval between two popup notifications.'}
               suffix={'seconds(s)'}
-              value={2} // sau lấy dữ liệu từ bên setting
+              value={settingValue.popsInterval}
+              onChange={value => {
+                handleSettingValue('popsInterval', value);
+              }}
             />
-            <RangeSliderWithtext
+            <RangeSliderWithText
               label={'Maximum of popups'}
               min={0}
               max={80}
               helptext={'How long each pop will display in your page.'}
               suffix={'pop(s)'}
-              value={20} // sau lấy dữ liệu từ bên setting
+              value={settingValue.maxPopsDisplay}
+              onChange={value => {
+                handleSettingValue('maxPopsDisplay', value);
+              }}
             />
           </FormLayout.Group>
         </FormLayout>

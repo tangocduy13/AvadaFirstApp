@@ -10,46 +10,17 @@ import {
   ResourceItem,
   TextStyle,
   Pagination,
-  Stack
+  Stack,
+  Frame,
+  Loading
 } from '@shopify/polaris';
+import useFetchApi from '@assets/hooks/api/useFetchApi';
 
 export default function Notifications() {
-  //------------------------Products setting----------------------//
-  const product1 = {
-    id: 1,
-    firstName: 'John Doe',
-    city: 'New York',
-    country: 'United States',
-    productName: 'Puffer Jacket With Hidden Hood',
-    timestamp: `${new Date()}`,
-    productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rzj2EAe2nS5OvZKYW3_MuXJMH8zdGp7dCw&usqp=CAU',
-    settings: {hideTimeAgo: false, truncateProductName: false}
-  };
-  const product2 = {
-    id: 2,
-    firstName: 'John Doe',
-    city: 'New York',
-    country: 'United States',
-    productName: 'Puffer Jacket With Hidden Hood',
-    timestamp: `${new Date()}`,
-    productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rzj2EAe2nS5OvZKYW3_MuXJMH8zdGp7dCw&usqp=CAU',
-    settings: {hideTimeAgo: false, truncateProductName: false}
-  };
-  const product3 = {
-    id: 3,
-    firstName: 'John Doe',
-    city: 'New York',
-    country: 'United States',
-    productName: 'Puffer Jacket With Hidden Hood',
-    timestamp: `${new Date()}`,
-    productImage:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4rzj2EAe2nS5OvZKYW3_MuXJMH8zdGp7dCw&usqp=CAU',
-    settings: {hideTimeAgo: false, truncateProductName: false}
-  };
-  const [products, setProducts] = useState([product1, product2, product3]);
-  //--------------------------End Products Setting----------------------//
+  const {data: settingValue} = useFetchApi({url: '/settings'});
+
+  const {data: notifications, loading} = useFetchApi({url: '/notifications'});
+
   const resourceName = {
     singular: 'notification',
     plural: 'notifications'
@@ -62,6 +33,15 @@ export default function Notifications() {
     }
   ];
   const [sortValue, setSortValue] = useState('DATE_MODIFIED_DESC');
+  if (loading) {
+    return (
+      <div style={{height: '100px'}}>
+        <Frame>
+          <Loading />
+        </Frame>
+      </div>
+    );
+  }
   return (
     <Page title="Notifications" subtitle="List of sales notifications from Shopify" fullWidth>
       <Layout>
@@ -69,7 +49,7 @@ export default function Notifications() {
           <Card>
             <ResourceList
               resourceName={resourceName}
-              items={products}
+              items={notifications}
               renderItem={renderItem}
               selectedItems={selectedItems}
               onSelectionChange={setSelectedItems}
@@ -106,8 +86,8 @@ export default function Notifications() {
   );
 
   function renderItem(item) {
-    const {id, firstName, city, country, productName, timestamp, productImage, settings} = item;
-    const {hideTimeAgo, truncateProductName} = settings;
+    const {id, firstName, city, country, productName, timestamp, productImage} = item;
+    const {hideTimeAgo, truncateProductName} = settingValue;
     return (
       <ResourceItem id={id} verticalAlignment="center">
         <Stack distribution="equalSpacing" alignment="leading">

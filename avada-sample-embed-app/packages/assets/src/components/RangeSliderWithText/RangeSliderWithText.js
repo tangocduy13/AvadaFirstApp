@@ -1,29 +1,23 @@
-import React, {useCallback, useState} from 'react';
-import {Card, RangeSlider, TextField} from '@shopify/polaris';
+import React from 'react';
+import {RangeSlider, TextField} from '@shopify/polaris';
 
-export default function RangeSliderWithtext({label, min, max, value, helptext, onChange, suffix}) {
-  const [rangeValue, setRangeValue] = useState(value);
-
-  const handleRangeSliderChange = useCallback(value => setRangeValue(value), []);
-
+export default function RangeSliderWithText({label, min, max, value, helptext, onChange, suffix}) {
   return (
     <RangeSlider
       output
       label={label}
       min={min}
       max={max}
-      value={rangeValue}
-      onChange={handleRangeSliderChange}
+      value={value.toString()}
+      onChange={onChange}
       helpText={helptext}
       suffix={
         <div style={{width: '110px'}}>
           <TextField
-            value={rangeValue.toString()}
+            value={value.toString()}
             suffix={suffix}
             autoComplete="off"
-            onChange={value => {
-              handleRangeSliderChange(value);
-            }}
+            onChange={onChange}
           ></TextField>
         </div>
       }
