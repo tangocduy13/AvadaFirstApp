@@ -1,0 +1,30 @@
+# Learn more about configuring your app at https://shopify.dev/docs/apps/tools/cli/configuration
+
+name = "avada-simple-sale-popups"
+client_id = "e3d9d5ee2e1d98acd3672b72d4effe94"
+application_url = "https://mrs-on-incentives-grab.trycloudflare.com/auth/shopify"
+embedded = true
+
+[access_scopes]
+# Learn more at https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes
+use_legacy_install_flow = true
+
+[auth]
+redirect_urls = [
+  "https://mrs-on-incentives-grab.trycloudflare.com/auth/shopify/callback",
+  "https://mrs-on-incentives-grab.trycloudflare.com/authSa/shopify/callback",
+  "https://mrs-on-incentives-grab.trycloudflare.com/auth/shopify/embed/callback",
+  "https://localhost:3000/auth/shopify/callback",
+  "https://localhost:3000/authSa/shopify/callback",
+  "https://localhost:3000/auth/shopify/embed/callback"
+]
+
+[webhooks]
+api_version = "2023-10"
+
+[pos]
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "quicktrainingstore.myshopify.com"

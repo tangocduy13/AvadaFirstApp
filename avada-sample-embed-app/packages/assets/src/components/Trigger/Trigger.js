@@ -1,4 +1,4 @@
-import {Card, FormLayout, Select, Stack, TextField} from '@shopify/polaris';
+import {FormLayout, Select, Stack, TextField} from '@shopify/polaris';
 import React, {useState, useCallback} from 'react';
 
 export default function Trigger({settingValue, handleSettingValue}) {

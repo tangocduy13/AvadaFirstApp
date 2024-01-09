@@ -1,4 +1,4 @@
-import * as settingsRepo from '@functions/repositories/settingsRepository';
+import {updateSettings} from '@functions/repositories/settingsRepository';
 import {getCurrentUser} from '@functions/helpers/auth';
 
 export async function getShopSettings(ctx) {
@@ -13,7 +13,7 @@ export async function getShopSettings(ctx) {
 export async function updateShopSettings(ctx) {
   const {shopID} = getCurrentUser(ctx);
   const {data} = ctx.req.body;
-  await settingsRepo.updateSettings(data, shopID);
+  await updateSettings(data, shopID);
   ctx.body = {
     status: true
   };

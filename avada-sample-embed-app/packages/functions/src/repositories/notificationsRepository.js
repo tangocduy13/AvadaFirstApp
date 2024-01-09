@@ -2,7 +2,7 @@ import {Firestore} from '@google-cloud/firestore';
 import prepareDocs from '../helpers/prepareDocs';
 
 const firestore = new Firestore();
-const collection = firestore.collection('Notifications');
+const collection = firestore.collection('notifications');
 
 export async function getNotifications() {
   try {

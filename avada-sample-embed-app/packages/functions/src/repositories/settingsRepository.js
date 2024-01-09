@@ -22,16 +22,8 @@ export async function getSettings(shopID) {
 
 export async function updateSettings(data, shopID) {
   try {
-    const settingsDocs = await collection
-      .where('shopId', '==', shopID)
-      .limit(1)
-      .get();
-    if (settingsDocs.empty) {
-      return null;
-    }
-    const doc = settingsDocs.docs[0];
-    const settingId = doc.id;
-    return collection.doc(settingId).update(data);
+    const setting = await getSettings(shopID);
+    return collection.doc(setting.id).update(data);
   } catch (e) {
     console.error(e);
     return null;
