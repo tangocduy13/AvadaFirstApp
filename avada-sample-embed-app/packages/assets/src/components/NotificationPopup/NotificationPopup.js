@@ -34,7 +34,7 @@ const NotificationPopup = ({
               <div className={'Avada-SP__Footer'}>
                 {hideTimeAgo ? '' : `${moment(timestamp).fromNow()}`}{' '}
                 <span className="uni-blue">
-                  <i className="fa fa-check" aria-hidden="true" /> by Avada
+                  <i className="fa-solid fa-check"></i> by Avada
                 </span>
               </div>
             </div>
