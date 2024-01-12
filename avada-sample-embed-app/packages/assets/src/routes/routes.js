@@ -3,9 +3,9 @@ import {Route, Switch} from 'react-router-dom';
 import Home from '@assets/loadables/Home';
 import NotFound from '@assets/loadables/NotFound';
 import Samples from '@assets/loadables/Samples/Samples';
-import Settings from '../pages/Settings/Settings';
+import Settings from '@assets/loadables/Settings/Settings';
 import {routePrefix} from '@assets/config/app';
-import Notifications from '../pages/Notification/Notifications';
+import Notifications from '@assets/loadables/Notifications/Notifications';
 
 // eslint-disable-next-line react/prop-types
 const Routes = ({prefix = routePrefix}) => (

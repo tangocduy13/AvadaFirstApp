@@ -35,3 +35,11 @@ export async function addNotifications(notificationList) {
     console.error(e);
   }
 }
+
+export async function addOneNotification(notification) {
+  try {
+    await collection.add(notification);
+  } catch (e) {
+    console.error(e);
+  }
+}
