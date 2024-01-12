@@ -5,7 +5,7 @@ export async function resolveAll(promises) {
         console.error(e);
         console.trace();
         console.log('Error while resolving promises', p);
-      })
+      });
     })
-  )
+  );
 }

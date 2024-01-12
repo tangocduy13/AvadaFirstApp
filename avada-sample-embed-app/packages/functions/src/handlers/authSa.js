@@ -7,7 +7,7 @@ import path from 'path';
 import createErrorHandler from '@functions/middleware/errorHandler';
 import firebase from 'firebase-admin';
 import appConfig from '@functions/config/app';
-import {afterInstall} from '@functions/services/shopifyService';
+import {afterInstall} from '@functions/services/installationService';
 
 if (firebase.apps.length === 0) {
   firebase.initializeApp();
