@@ -1,12 +1,16 @@
-import {addNotifications} from '@functions/repositories/notificationsRepository';
-import {getNotification} from '@functions/helpers/utils/getNotification';
+export function prepareNotification({shop, order, product}) {
+  const shipping_address = order?.shipping_address;
+  if (!shipping_address) return {};
 
-export async function addNotificationService(shopify, shop) {
-  const orders = await shopify.order.list();
-
-  const notificationList = await Promise.all(
-    orders.map(orderData => getNotification({shopify, shop, orderData}))
-  );
-
-  await addNotifications(notificationList);
+  return {
+    city: shipping_address.city,
+    country: shipping_address.country,
+    firstName: shipping_address.first_name,
+    productId: product.id,
+    productImage: product.image.src,
+    productName: product.title,
+    shopId: shop.id,
+    shopifyDomain: shop.shopifyDomain,
+    timestamp: order.created_at
+  };
 }

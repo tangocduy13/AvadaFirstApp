@@ -2,21 +2,25 @@ import {getShopByShopifyDomain} from '@avada/shopify-auth';
 import {resolveAll} from '@functions/helpers/utils/resolveAll';
 import {addDefaultSetting} from '@functions/repositories/settingsRepository';
 import {initShopify} from '@functions/helpers/utils/initShopify';
-import {addNotificationService} from '@functions/services/shopifyService';
+import {pushNotification} from '@functions/services/pushNotification';
+import {createWebhook} from '@functions/services/createWebhook';
 
 export async function afterInstall(ctx) {
   try {
-    console.log(ctx.state.shopify);
-    //* {
-    //    shop: 'quicktrainingstore.myshopify.com',
-    //    accessToken: 'shpua_088740c200c3b21375d3c90513d4ccf5'
-    //  } */
     const shopifyDomain = ctx.state.shopify.shop;
     const shop = await getShopByShopifyDomain(shopifyDomain);
-
+    console.log('shopInfo', shop);
     const shopify = initShopify(shop);
 
-    await resolveAll([addNotificationService(shopify, shop), addDefaultSetting(shop.id)]);
+    // await resolveAll([pushNotification({shopify, shop}), addDefaultSetting(shop.id)]);
+    await Promise.all([
+      pushNotification({shopify, shop}),
+      addDefaultSetting(shop.id),
+      createWebhook(shopify)
+    ]);
+
+    const listWebhook = await shopify.webhook.list();
+    console.log('listWebhook', listWebhook);
   } catch (e) {
     console.error(e);
   }

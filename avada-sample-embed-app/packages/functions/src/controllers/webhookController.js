@@ -1,19 +1,21 @@
 import {getShopByShopifyDomain} from '@avada/shopify-auth';
 import {initShopify} from '@functions/helpers/utils/initShopify';
-import {getNotification} from '@functions/helpers/utils/getNotification';
 import {addOneNotification} from '@functions/repositories/notificationsRepository';
+import {prepareNotification} from '@functions/services/shopifyService';
 
 export async function listenNewOrder(ctx) {
   try {
     const shopifyDomain = ctx.get('x-shopify-shop-domain');
     const orderData = ctx.req.body;
-
+    console.log(orderData);
     const shop = await getShopByShopifyDomain(shopifyDomain);
     const shopify = initShopify(shop);
 
-    const notificationList = await getNotification({shopify, shop, orderData});
+    const productId = orderData?.line_items[0]?.product_id;
+    const product = await shopify.product.get(productId);
 
-    await addOneNotification(notificationList);
+    const notification = await prepareNotification({shop, order: orderData, product});
+    await addOneNotification(notification);
 
     return (ctx.body = {
       success: true
