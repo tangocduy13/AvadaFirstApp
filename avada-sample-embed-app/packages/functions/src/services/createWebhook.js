@@ -13,7 +13,7 @@ export async function createWebhook(shopify) {
   // create new webhook
   await shopify.webhook.create({
     topic: 'orders/create',
-    address: `https://${app.base_url}/webhook/order/new`,
+    address: `https://${app.webhook_url}/webhook/order/new`,
     format: 'json'
   });
 }
