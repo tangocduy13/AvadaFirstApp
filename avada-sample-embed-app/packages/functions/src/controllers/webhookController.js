@@ -5,15 +5,14 @@ import {addOneNotification} from '@functions/repositories/notificationsRepositor
 
 export async function listenNewOrder(ctx) {
   try {
-    console.log('ctx', ctx);
     const shopifyDomain = ctx.get('x-shopify-shop-domain');
     const orderData = ctx.req.body;
-    console.log('orderData', orderData);
+
     const shop = await getShopByShopifyDomain(shopifyDomain);
     const shopify = initShopify(shop);
 
     const notificationList = await getNotification({shopify, shop, orderData});
-    console.log('notificationList', notificationList);
+
     await addOneNotification(notificationList);
 
     return (ctx.body = {

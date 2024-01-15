@@ -6,6 +6,5 @@ export default function webhookRouter() {
     prefix: '/webhook'
   });
   router.post('/order/new', listenNewOrder);
-  router.get('/order/new', ctx => (ctx.body = {message: 'ok'}));
   return router;
 }
