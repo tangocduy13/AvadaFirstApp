@@ -1,8 +1,8 @@
 import {getShopByShopifyDomain} from '@avada/shopify-auth';
-import {resolveAll} from '@functions/helpers/utils/resolveAll';
 import {addDefaultSetting} from '@functions/repositories/settingsRepository';
 import {initShopify} from '@functions/helpers/utils/initShopify';
-import {pushNotification} from '@functions/services/pushNotification';
+// import {pushNotification} from '@functions/services/pushNotification';
+import {pushNotification} from '@functions/services/shopifyGraphQL';
 import {createWebhook} from '@functions/services/createWebhook';
 
 export async function afterInstall(ctx) {
@@ -14,9 +14,10 @@ export async function afterInstall(ctx) {
 
     // await resolveAll([pushNotification({shopify, shop}), addDefaultSetting(shop.id)]);
     await Promise.all([
-      pushNotification({shopify, shop}),
-      addDefaultSetting(shop.id),
-      createWebhook(shopify)
+      // pushNotification({shopify, shop}),
+      pushNotification(shop)
+      // addDefaultSetting(shop.id),
+      // createWebhook(shopify)
     ]);
 
     const listWebhook = await shopify.webhook.list();
