@@ -2,7 +2,7 @@
 
 name = "avada-simple-sale-popups"
 client_id = "e3d9d5ee2e1d98acd3672b72d4effe94"
-application_url = "https://complete-bids-hardcover-anxiety.trycloudflare.com/auth/shopify"
+application_url = "https://wed-phi-ion-choir.trycloudflare.com/auth/shopify"
 embedded = true
 
 [access_scopes]
@@ -11,9 +11,9 @@ use_legacy_install_flow = true
 
 [auth]
 redirect_urls = [
-  "https://complete-bids-hardcover-anxiety.trycloudflare.com/auth/shopify/callback",
-  "https://complete-bids-hardcover-anxiety.trycloudflare.com/authSa/shopify/callback",
-  "https://complete-bids-hardcover-anxiety.trycloudflare.com/auth/shopify/embed/callback",
+  "https://wed-phi-ion-choir.trycloudflare.com/auth/shopify/callback",
+  "https://wed-phi-ion-choir.trycloudflare.com/authSa/shopify/callback",
+  "https://wed-phi-ion-choir.trycloudflare.com/auth/shopify/embed/callback",
   "https://localhost:3000/auth/shopify/callback",
   "https://localhost:3000/authSa/shopify/callback",
   "https://localhost:3000/auth/shopify/embed/callback"

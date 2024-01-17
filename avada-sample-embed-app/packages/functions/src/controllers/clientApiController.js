@@ -13,11 +13,8 @@ export async function getClientData(ctx) {
     ]);
 
     return (ctx.body = {
-      data: {
-        settings: settings,
-        notifications: notifications
-      },
-      success: true
+      settings: settings,
+      notifications: notifications
     });
   } catch (e) {
     console.error(e);

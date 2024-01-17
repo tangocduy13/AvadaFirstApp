@@ -3,9 +3,9 @@ const defaultSettings = {
   hideTimeAgo: false,
   truncateProductName: false,
   displayDuration: 3,
-  firstDelay: 5,
+  firstDelay: 2,
   popsInterval: 2,
-  maxPopsDisplay: 10,
+  maxPopsDisplay: 80,
   includedUrls: '',
   excludedUrls: '',
   allowShow: 'all'
