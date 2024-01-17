@@ -1,7 +1,7 @@
 import {addOneNotification} from '@functions/repositories/notificationsRepository';
 import {prepareNotification} from '@functions/services/shopifyService';
 
-export async function pushNotification({shopify, shop}) {
+export async function syncNotification({shopify, shop}) {
   const orders = await shopify.order.list({limit: 30});
 
   const productIds = orders.map(order => {
@@ -22,10 +22,4 @@ export async function pushNotification({shopify, shop}) {
       addOneNotification(notification);
     })
   );
-
-  // await resolveAll(
-  //   notifications.map(notification => {
-  //     addOneNotification(notification);
-  //   })
-  // );
 }

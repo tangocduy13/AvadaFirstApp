@@ -2,7 +2,7 @@ import {insertAfter} from '../helpers/insertHelpers';
 import {render} from 'preact';
 import React from 'preact/compat';
 import NotificationPopup from '../components/NotificationPopup/NotificationPopup';
-import {sleep} from '../helpers/utils/sleep';
+import {delay} from '../helpers/utils/delay';
 
 export default class DisplayManager {
   constructor() {
@@ -27,13 +27,21 @@ export default class DisplayManager {
     const excludedUrlsList = new Set(excludedUrls.split('\n'));
     const currentUrl = window.location.href;
 
-    if (
-      (allowShow === 'all' && !excludedUrlsList.has(currentUrl)) ||
-      (allowShow === 'specific' && includedUrlsList.has(currentUrl))
-    ) {
-      return true;
+    // if (
+    //   (allowShow === 'all' && !excludedUrlsList.has(currentUrl)) ||
+    //   (allowShow === 'specific' && includedUrlsList.has(currentUrl))
+    // ) {
+    //   return true;
+    // }
+    // return false;
+    switch (allowShow) {
+      case 'all': {
+        return !excludedUrlsList.has(currentUrl);
+      }
+      case 'specific': {
+        return includedUrlsList.has(currentUrl) && !excludedUrlsList.has(currentUrl);
+      }
     }
-    return false;
   }
 
   async displayNotification() {
@@ -43,12 +51,12 @@ export default class DisplayManager {
       maxPopsDisplay
     );
 
-    await sleep(firstDelay);
+    await delay(firstDelay);
     for (const popIndex of popDisplayArray) {
       this.display({notification: this.notifications[popIndex], settings: this.settings});
-      await sleep(displayDuration);
+      await delay(displayDuration);
       this.fadeOut();
-      await sleep(popsInterval);
+      await delay(popsInterval);
     }
   }
 
