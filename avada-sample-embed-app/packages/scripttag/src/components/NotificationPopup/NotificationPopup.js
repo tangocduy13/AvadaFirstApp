@@ -10,7 +10,7 @@ const NotificationPopup = ({
   productName,
   timestamp = `${new Date()}`,
   productImage,
-  settings = {hideTimeAgo: false, truncateProductName: false, position: 'bottom-left'},
+  settings,
   close
 }) => {
   const {hideTimeAgo, truncateProductName, position} = settings;

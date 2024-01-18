@@ -15,8 +15,8 @@ export async function afterInstall(ctx) {
     await Promise.all([
       syncNotification({shopify, shop}),
       addDefaultSetting(shop.id),
-      registerWebhook(shopify),
-      registerScriptTag(shopify)
+      registerWebhook(shopify)
+      // registerScriptTag(shopify)
     ]);
   } catch (e) {
     console.error(e);
