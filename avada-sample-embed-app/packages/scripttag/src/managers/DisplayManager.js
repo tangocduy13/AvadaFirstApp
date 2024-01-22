@@ -1,5 +1,6 @@
 import {insertAfter} from '../helpers/insertHelpers';
 import {render} from 'preact';
+import React from 'preact/compat';
 import NotificationPopup from '../components/NotificationPopup/NotificationPopup';
 import {delay} from '../helpers/utils/delay';
 
