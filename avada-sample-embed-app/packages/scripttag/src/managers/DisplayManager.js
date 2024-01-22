@@ -1,6 +1,5 @@
 import {insertAfter} from '../helpers/insertHelpers';
 import {render} from 'preact';
-import React from 'preact/compat';
 import NotificationPopup from '../components/NotificationPopup/NotificationPopup';
 import {delay} from '../helpers/utils/delay';
 
@@ -27,13 +26,6 @@ export default class DisplayManager {
     const excludedUrlsList = new Set(excludedUrls.split('\n'));
     const currentUrl = window.location.href;
 
-    // if (
-    //   (allowShow === 'all' && !excludedUrlsList.has(currentUrl)) ||
-    //   (allowShow === 'specific' && includedUrlsList.has(currentUrl))
-    // ) {
-    //   return true;
-    // }
-    // return false;
     switch (allowShow) {
       case 'all': {
         return !excludedUrlsList.has(currentUrl);
